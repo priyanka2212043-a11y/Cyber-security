@@ -293,6 +293,8 @@ strong {
                2px 2px 4px rgba(0, 0, 0, 0.9);
   font-weight: 800;
   letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .logo:hover {
@@ -1144,6 +1146,10 @@ strong {
     gap: var(--space-sm);
   }
   
+  .logo span {
+    font-size: 1rem;
+  }
+  
   .logo img {
     height: 36px;
     border: 2.5px solid var(--color-primary);
@@ -1264,6 +1270,10 @@ strong {
   .logo {
     font-size: var(--text-2xl);
     gap: var(--space-md);
+  }
+  
+  .logo span {
+    font-size: var(--text-2xl);
   }
   
   .logo img {
