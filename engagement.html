@@ -16,160 +16,353 @@
   
   <style>
     .engagement-hero {
-      background: linear-gradient(135deg, #0a1f21 0%, #14383c 100%);
-      padding: 100px 20px 80px;
+      background: linear-gradient(135deg, #0a1f21 0%, #0d2b2e 50%, #14383c 100%);
+      padding: 120px 20px 100px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .engagement-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(23, 184, 144, 0.08) 49px, rgba(23, 184, 144, 0.08) 50px),
+        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(23, 184, 144, 0.08) 49px, rgba(23, 184, 144, 0.08) 50px);
+      z-index: 0;
     }
     
     .engagement-hero h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 25px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #3dd5af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .engagement-hero p {
+      font-size: 1.25rem;
+      color: #c5d4d7;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      line-height: 1.8;
     }
     
     .engagement-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 80px 20px;
-      background: #0d2b2e;
+      padding: 100px 20px;
+      background: linear-gradient(180deg, #0d2b2e 0%, #0a1f21 100%);
+      position: relative;
+    }
+    
+    .section-intro {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+    
+    .section-intro h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3dd5af;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: var(--font-headline);
+    }
+    
+    .section-intro p {
+      font-size: 1.1rem;
+      color: #c5d4d7;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
     
     .commitment-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
       margin-top: 40px;
     }
     
     .commitment-card {
-      background: #14383c;
-      border-radius: 12px;
-      padding: 40px 30px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
+      background: linear-gradient(145deg, #14383c 0%, #0f2d30 100%);
+      border-radius: 20px;
+      padding: 50px 35px;
+      border: 3px solid transparent;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .commitment-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .commitment-card:hover::before {
+      opacity: 1;
+    }
+    
+    .commitment-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent);
+      pointer-events: none;
     }
     
     .commitment-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
     }
     
     .commitment-card.low {
-      border-color: #22c55e;
+      --card-color-1: #22c55e;
+      --card-color-2: #10b981;
+      border-color: rgba(34, 197, 94, 0.3);
     }
     
     .commitment-card.low:hover {
-      box-shadow: 0 20px 50px rgba(34, 197, 94, 0.3);
+      box-shadow: 0 25px 60px rgba(34, 197, 94, 0.4);
     }
     
     .commitment-card.medium {
-      border-color: #fbbf24;
+      --card-color-1: #fbbf24;
+      --card-color-2: #f59e0b;
+      border-color: rgba(251, 191, 36, 0.3);
     }
     
     .commitment-card.medium:hover {
-      box-shadow: 0 20px 50px rgba(251, 191, 36, 0.3);
+      box-shadow: 0 25px 60px rgba(251, 191, 36, 0.4);
     }
     
     .commitment-card.high {
-      border-color: #ef4444;
+      --card-color-1: #ef4444;
+      --card-color-2: #dc2626;
+      border-color: rgba(239, 68, 68, 0.3);
     }
     
     .commitment-card.high:hover {
-      box-shadow: 0 20px 50px rgba(239, 68, 68, 0.3);
+      box-shadow: 0 25px 60px rgba(239, 68, 68, 0.4);
+    }
+    
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .commitment-card.low .card-icon {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    }
+    
+    .commitment-card.medium .card-icon {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    }
+    
+    .commitment-card.high .card-icon {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     }
     
     .commitment-title {
-      font-size: 2rem;
+      font-size: 2.25rem;
       font-weight: 800;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-family: var(--font-headline);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
     }
     
     .commitment-card.low .commitment-title {
       color: #22c55e;
+      text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
     }
     
     .commitment-card.medium .commitment-title {
       color: #fbbf24;
+      text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
     }
     
     .commitment-card.high .commitment-title {
       color: #ef4444;
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+    
+    .commitment-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .commitment-card.low .commitment-badge {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+    
+    .commitment-card.medium .commitment-badge {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    
+    .commitment-card.high .commitment-badge {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.4);
     }
     
     .commitment-time {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: #c5d4d7;
-      margin-bottom: 30px;
-      font-weight: 400;
+      margin-bottom: 35px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .commitment-time::before {
+      content: '⏱️';
+      font-size: 1.2rem;
     }
     
     .commitment-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 35px 0;
+      margin: 0 0 40px 0;
       text-align: left;
     }
     
     .commitment-list li {
       color: #f0f4f5;
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 12px;
-      padding-left: 25px;
+      font-size: 1.05rem;
+      line-height: 2;
+      margin-bottom: 14px;
+      padding-left: 35px;
       position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .commitment-list li:hover {
+      transform: translateX(5px);
+      color: #ffffff;
     }
     
     .commitment-list li::before {
-      content: "•";
+      content: "✓";
       position: absolute;
       left: 0;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: bold;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
     }
     
     .commitment-card.low .commitment-list li::before {
       color: #22c55e;
+      background: rgba(34, 197, 94, 0.15);
+      border: 2px solid rgba(34, 197, 94, 0.4);
     }
     
     .commitment-card.medium .commitment-list li::before {
       color: #fbbf24;
+      background: rgba(251, 191, 36, 0.15);
+      border: 2px solid rgba(251, 191, 36, 0.4);
     }
     
     .commitment-card.high .commitment-list li::before {
       color: #ef4444;
+      background: rgba(239, 68, 68, 0.15);
+      border: 2px solid rgba(239, 68, 68, 0.4);
     }
     
     .commitment-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       width: 100%;
-      padding: 18px 30px;
-      font-size: 1.1rem;
+      padding: 20px 35px;
+      font-size: 1.15rem;
       font-weight: 700;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       position: relative;
       z-index: 10;
       pointer-events: auto;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      overflow: hidden;
+    }
+    
+    .commitment-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .commitment-btn:hover::before {
+      opacity: 1;
     }
     
     .commitment-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     }
     
     .commitment-btn:active {
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(0.98);
     }
     
     .commitment-card.low .commitment-btn {
@@ -178,7 +371,7 @@
     }
     
     .commitment-card.low .commitment-btn:hover {
-      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.5);
+      box-shadow: 0 15px 40px rgba(34, 197, 94, 0.6);
     }
     
     .commitment-card.medium .commitment-btn {
@@ -187,7 +380,7 @@
     }
     
     .commitment-card.medium .commitment-btn:hover {
-      box-shadow: 0 12px 30px rgba(251, 191, 36, 0.5);
+      box-shadow: 0 15px 40px rgba(251, 191, 36, 0.6);
     }
     
     .commitment-card.high .commitment-btn {
@@ -196,17 +389,83 @@
     }
     
     .commitment-card.high .commitment-btn:hover {
-      box-shadow: 0 12px 30px rgba(239, 68, 68, 0.5);
+      box-shadow: 0 15px 40px rgba(239, 68, 68, 0.6);
+    }
+    
+    @media (max-width: 1024px) {
+      .commitment-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 35px;
+      }
     }
     
     @media (max-width: 768px) {
       .engagement-hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+      
+      .engagement-hero p {
+        font-size: 1.1rem;
       }
       
       .commitment-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
       }
+      
+      .commitment-card {
+        padding: 40px 25px;
+      }
+      
+      .commitment-title {
+        font-size: 1.85rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .engagement-hero {
+        padding: 100px 15px 80px;
+      }
+      
+      .engagement-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .engagement-container {
+        padding: 60px 15px;
+      }
+      
+      .commitment-title {
+        font-size: 1.65rem;
+      }
+      
+      .commitment-btn {
+        padding: 18px 25px;
+        font-size: 1rem;
+      }
+    }
+    
+    /* Footer Styles */
+    .footer-brand {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 15px;
+      font-family: var(--font-headline);
+    }
+    
+    .footer-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+      font-family: var(--font-headline);
+    }
+    
+    .footer-desc {
+      color: #c5d4d7;
+      line-height: 1.7;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -246,13 +505,21 @@
   <!-- Hero Section -->
   <section class="engagement-hero">
     <h1>Choose Your Level of Engagement</h1>
+    <p>Every action counts. Pick the commitment level that works for you and start making a difference today.</p>
   </section>
 
   <!-- Commitment Options -->
   <section class="engagement-container">
+    <div class="section-intro">
+      <h2>🌱 Make Your Impact</h2>
+      <p>Join thousands of activists worldwide taking action for our planet. Whether you have 5 minutes or 5 hours, there's a way for you to contribute to environmental justice.</p>
+    </div>
+    
     <div class="commitment-grid">
       <!-- Low Commitment -->
       <div class="commitment-card low">
+        <div class="card-icon">🌿</div>
+        <span class="commitment-badge">Beginner</span>
         <h2 class="commitment-title">Low Commitment</h2>
         <p class="commitment-time">5-15 minutes</p>
         <ul class="commitment-list">
@@ -268,6 +535,8 @@
 
       <!-- Medium Commitment -->
       <div class="commitment-card medium">
+        <div class="card-icon">🌳</div>
+        <span class="commitment-badge">Active Member</span>
         <h2 class="commitment-title">Medium Commitment</h2>
         <p class="commitment-time">1-5 hours per month</p>
         <ul class="commitment-list">
@@ -283,6 +552,8 @@
 
       <!-- High Commitment -->
       <div class="commitment-card high">
+        <div class="card-icon">🌲</div>
+        <span class="commitment-badge">Leader</span>
         <h2 class="commitment-title">High Commitment</h2>
         <p class="commitment-time">10+ hours per month</p>
         <ul class="commitment-list">
@@ -300,36 +571,36 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h3 class="footer-title">Green Truth</h3>
-          <p class="footer-text">Fighting for environmental justice and a sustainable future for all.</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="footer-brand">Green Truth</h3>
+          <p class="footer-desc">Fighting for environmental justice and a sustainable future for all.</p>
         </div>
         
-        <div class="footer-col">
-          <h4 class="footer-heading">Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="campaigns.html">Campaigns</a></li>
-            <li><a href="take-action.html">Take Action</a></li>
-          </ul>
+        <div class="footer-section">
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="campaigns.html">Campaigns</a>
+            <a href="take-action.html">Take Action</a>
+          </div>
         </div>
         
-        <div class="footer-col">
-          <h4 class="footer-heading">Get Involved</h4>
-          <ul class="footer-links">
-            <li><a href="take-action.html">Volunteer</a></li>
-            <li><a href="take-action.html">Donate</a></li>
-            <li><a href="campaigns.html">Join a Campaign</a></li>
-            <li><a href="resources.html">Resources</a></li>
-          </ul>
+        <div class="footer-section">
+          <h4 class="footer-title">Get Involved</h4>
+          <div class="footer-links">
+            <a href="take-action.html">Volunteer</a>
+            <a href="take-action.html">Donate</a>
+            <a href="campaigns.html">Join a Campaign</a>
+            <a href="resources.html">Resources</a>
+          </div>
         </div>
         
-        <div class="footer-col">
-          <h4 class="footer-heading">Connect</h4>
-          <p class="footer-text">Join our community and stay updated on the fight for our planet.</p>
+        <div class="footer-section">
+          <h4 class="footer-title">Connect</h4>
+          <p class="footer-desc">Join our community and stay updated on the fight for our planet.</p>
         </div>
       </div>
       
