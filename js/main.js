@@ -105,10 +105,94 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const input = this.querySelector('.newsletter-input');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      
       if (input && input.value) {
-        alert('Thank you for subscribing to Green Truth updates!');
-        input.value = '';
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.value)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        
+        // Show loading state
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '⏳ Subscribing...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+          alert('✅ Thank you for subscribing to Green Truth updates!\\n\\nYou will receive weekly updates about our campaigns and actions.');
+          input.value = '';
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }, 500);
       }
+    });
+  });
+  
+  // Add click tracking for all buttons (optional analytics)
+  const allButtons = document.querySelectorAll('.btn, button, a[class*="btn"]');
+  allButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const buttonText = this.innerText || this.getAttribute('aria-label') || 'Unknown Button';
+      console.log('Button clicked:', buttonText);
+      
+      // Check if link is external
+      const href = this.getAttribute('href');
+      if (href && (href.startsWith('http') || href.startsWith('https')) && !href.includes(window.location.hostname)) {
+        // External link - could track analytics here
+        console.log('External link clicked:', href);
+      }
+    });
+  });
+  
+  // Smooth scroll enhancement for internal anchor links within pages
+  window.addEventListener('load', function() {
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(() => {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    }
+  });
+  
+  // Add ripple effect to buttons on click (visual feedback)
+  document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        left: ${x}px;
+        top: ${y}px;
+        pointer-events: none;
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+      `;
+      
+      this.style.position = 'relative';
+      this.style.overflow = 'hidden';
+      this.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 600);
     });
   });
 });
