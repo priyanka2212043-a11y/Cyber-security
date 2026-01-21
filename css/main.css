@@ -872,26 +872,44 @@ strong {
 
 .social-links {
   display: flex;
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
+  gap: 0.875rem;
+  margin-top: 1.25rem;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+@media (max-width: 575px) {
+  .social-links {
+    gap: 0.625rem;
+    margin-top: 1rem;
+  }
 }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   background: linear-gradient(135deg, rgba(23, 184, 144, 0.15), rgba(23, 184, 144, 0.05));
   border-radius: var(--radius-md);
   color: var(--color-primary);
   transition: all var(--transition-base);
   border: 2px solid rgba(23, 184, 144, 0.3);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: bold;
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+@media (max-width: 575px) {
+  .social-link {
+    width: 44px;
+    height: 44px;
+    font-size: 1.05rem;
+  }
 }
 
 .social-link::before {
@@ -938,10 +956,11 @@ strong {
 /* Newsletter Form */
 .newsletter-form {
   display: flex;
-  gap: var(--space-sm);
-  margin-top: var(--space-xl);
+  gap: 0.75rem;
+  margin-top: 1.25rem;
   position: relative;
   flex-direction: column;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -952,14 +971,14 @@ strong {
 
 .newsletter-input {
   flex: 1;
-  padding: var(--space-md) var(--space-lg);
+  padding: 0.875rem 1rem;
   border: 2px solid rgba(23, 184, 144, 0.3);
   border-radius: var(--radius-md);
   background: rgba(23, 184, 144, 0.05);
   color: var(--color-white);
-  font-size: var(--text-base);
+  font-size: 0.9375rem;
   transition: all var(--transition-base);
-  min-height: 44px;
+  min-height: 48px;
   width: 100%;
 }
 
@@ -972,6 +991,21 @@ strong {
   border-color: var(--color-primary);
   background: rgba(23, 184, 144, 0.1);
   box-shadow: 0 0 20px rgba(23, 184, 144, 0.3);
+}
+
+.newsletter-form .btn {
+  white-space: nowrap;
+  min-height: 48px;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .newsletter-form .btn {
+    width: auto;
+    padding: 0.875rem 2rem;
+  }
 }
   border-color: var(--color-primary);
 }
@@ -1169,6 +1203,20 @@ strong {
     padding: 0.5rem;
     min-width: 40px;
     min-height: 40px;
+  }
+  
+  .footer-section {
+    padding: 0 0.5rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
   
   .hero {
