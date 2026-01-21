@@ -285,7 +285,8 @@ strong {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   flex-shrink: 0;
   text-decoration: none;
-  line-height: 1;
+  line-height: 1.2;
+  max-width: 100%;
 }
 
 .logo span {
@@ -299,7 +300,9 @@ strong {
   visibility: visible;
   opacity: 1;
   text-decoration: none;
-  line-height: 1;
+  line-height: 1.2;
+  overflow: visible;
+  max-width: 100%;
 }
 
 .logo:hover {
@@ -1173,24 +1176,31 @@ strong {
   }
   
   .header-container {
-    padding: 0 0.5rem;
+    padding: 0 0.75rem;
   }
   
   .logo {
-    font-size: 1.05rem;
-    gap: 0.6rem;
+    font-size: 1rem;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
   }
   
   .logo span {
-    font-size: 1.05rem;
-    letter-spacing: 0.3px;
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
   
   .logo img {
-    height: 40px;
-    width: 40px;
-    min-width: 40px;
+    height: 38px;
+    width: 38px;
+    min-width: 38px;
     border: 2px solid var(--color-primary);
+    flex-shrink: 0;
   }
   
   .mobile-nav {
