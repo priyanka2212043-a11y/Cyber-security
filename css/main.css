@@ -1114,6 +1114,19 @@ strong {
 
 /* Base mobile styles */
 @media (max-width: 575px) {
+  .header {
+    height: 56px;
+  }
+  
+  .header-container {
+    padding: 0 0.75rem;
+  }
+  
+  .mobile-nav {
+    top: 56px;
+    max-height: calc(100vh - 56px);
+  }
+  
   .hero {
     min-height: 450px !important;
     padding: var(--space-2xl) var(--container-padding) !important;
@@ -1206,6 +1219,14 @@ strong {
   .btn {
     width: auto;
   }
+  
+  .header-container {
+    padding: 0 1rem;
+  }
+  
+  .mobile-nav {
+    padding: var(--space-md);
+  }
 }
 
 /* Tablet (768px and up) */
@@ -1223,6 +1244,19 @@ strong {
     --container-padding: 2rem;
     --space-3xl: 4rem;
     --space-4xl: 6rem;
+  }
+  
+  .header {
+    height: 70px;
+  }
+  
+  .header-container {
+    padding: 0 1.5rem;
+  }
+  
+  .mobile-nav {
+    top: 70px;
+    max-height: calc(100vh - 70px);
   }
   
   .grid-2 {
@@ -1324,6 +1358,14 @@ strong {
 
 /* Desktop (1024px and up) */
 @media (min-width: 1024px) {
+  .header {
+    height: 75px;
+  }
+  
+  .header-container {
+    padding: 0 2rem;
+  }
+  
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
