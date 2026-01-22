@@ -2002,3 +2002,25 @@ object {
     font-size: 1.0625rem;
   }
 }
+/* ===================================
+   HIDE FLOATING ACTION BUTTONS/ICONS
+   =================================== */
+/* Hide any floating action buttons, quick access icons, or overlays */
+[class*="floating"],
+[class*="fab"],
+[class*="quick-action"],
+[class*="action-btn"],
+[class*="overlay-icon"],
+[id*="floating"],
+[id*="fab"],
+[id*="quick-action"],
+div[style*="position: fixed"][style*="bottom"],
+div[style*="position: fixed"][style*="right"],
+.gtranslate_wrapper,
+#google_translate_element,
+[data-floating],
+[data-fab] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
